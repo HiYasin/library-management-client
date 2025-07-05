@@ -2,6 +2,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import Actions from "./actions";
 
 export interface IBookCol {
+  _id: string;
   title: string;
   author: string;
   genre:
@@ -42,8 +43,9 @@ export const columns: ColumnDef<IBookCol>[] = [
     header: "Available",
   },
   {
+    accessorKey: "actions",
     header: "Actions",
     id: "actions",
-    cell: ({ row }) => <Actions row={row} />,
+    cell: ({ row }) => <Actions row={row.original} />,
   },
 ];

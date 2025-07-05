@@ -1,11 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { useDeleteBookMutation } from "@/redux/features/books/bookApi";
 import { EyeIcon, PencilIcon, TrashIcon } from "lucide-react";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import type { IBookCol } from "./columns";
 
-export default function Actions({ row }) {
-  const [deleteBook] = useDeleteBookMutation(row.original.id);
 
+interface ActionsProps {
+  row: IBookCol;
+}
+
+export default function Actions({ row }:ActionsProps) {
+  const [deleteBook] = useDeleteBookMutation();
+
+  console.log(row)
   const handleDelete = async (bookId: string) => {
     try {
       await deleteBook(bookId).unwrap();
@@ -16,13 +24,19 @@ export default function Actions({ row }) {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleDetails=(bookId: string)=>{
+    navigate(`/books/${bookId}`);
+  }
+
   return (
     <div className="flex gap-2">
       <Button
         size="icon"
         variant="ghost"
         className="hover:bg-primary cursor-pointer hover:text-white"
-        onClick={() => alert(JSON.stringify(row.original, null, 2))}
+        onClick={() => handleDetails(row._id)}
       >
         <EyeIcon className="w-4 h-4" />
       </Button>
@@ -30,7 +44,7 @@ export default function Actions({ row }) {
         size="icon"
         variant="ghost"
         className="hover:bg-primary cursor-pointer hover:text-white"
-        onClick={() => alert(JSON.stringify(row.original, null, 2))}
+        onClick={() => alert(JSON.stringify(row, null, 2))}
       >
         <PencilIcon className="w-4 h-4" />
       </Button>
@@ -38,7 +52,7 @@ export default function Actions({ row }) {
         size="icon"
         variant="ghost"
         className="hover:bg-primary cursor-pointer"
-        onClick={() => handleDelete(row.original._id)}
+        onClick={() => handleDelete(row._id)}
       >
         <TrashIcon className="w-4 h-4 text-red-500" />
       </Button>
