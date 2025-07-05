@@ -1,7 +1,6 @@
-"use client"
-import { Button } from "@/components/ui/button";
 import Lottie from "lottie-react";
 import bannerLottie from "@/assets/books_lottie.json"
+import { Welcome } from "./Welcome";
 
 function Hero() {
   return (
@@ -22,7 +21,7 @@ function Hero() {
             Welcome to your smart library solution. Easily search, reserve, and manage books with just a few clicks. Whether you're a student, teacher, or avid reader — our system makes library access simple, fast, and efficient.
           </p>
           <div className="flex justify-center lg:justify-start">
-            <Button className="rounded-full">Get Started Now</Button>
+            <Welcome />
           </div>
         </div>
       </div>
