@@ -1,6 +1,5 @@
-import Discover from "./components/Discover";
+import { Outlet } from "react-router";
 import Footer from "./components/Footer";
-import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -8,8 +7,7 @@ function App() {
     <>
     <div className="font-mono">
       <Navbar />
-      <Hero />
-      <Discover />
+      <Outlet />
       <Footer />
     </div>
     </>

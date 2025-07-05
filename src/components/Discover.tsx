@@ -26,7 +26,7 @@ const books = [
 
 export default function Discover() {
   return (
-    <section className="py-10 w-full max-w-7xl mx-auto">
+    <section className="py-10 w-full max-w-7xl mx-auto px-4">
       <h2 className="text-5xl font-bold mb-6 md:mb-10 text-center text-primary">Discover Books</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
