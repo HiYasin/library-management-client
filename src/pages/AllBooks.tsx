@@ -1,6 +1,11 @@
+import BookTable from "@/components/BookTable";
 
 export default function AllBooks() {
   return (
-    <div>AllBooks</div>
-  )
+    <section className="w-full flex items-center px-6 md:px-16">
+      <div className="w-full max-w-7xl mx-auto">
+        <BookTable />
+      </div>
+    </section>
+  );
 }
