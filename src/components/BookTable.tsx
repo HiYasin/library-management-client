@@ -9,17 +9,19 @@ export default function BookTable() {
   if (isLoading) {
     return (
       <div className="container mx-auto h-[80vh] flex justify-center items-center">
-        <Spinner size={50}/>
+        <Spinner size={50} />
       </div>
     );
   }
 
-  if(isError){
-    return(
+  if (isError) {
+    return (
       <div className="container mx-auto py-10 flex justify-center items-center">
-        <span className="text-red-500 text-lg">Failed to load books. Please try again later.</span>
+        <span className="text-red-500 text-lg">
+          Failed to load books. Please try again later.
+        </span>
       </div>
-    )
+    );
   }
   return (
     <div className="container mx-auto py-10">

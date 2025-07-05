@@ -1,7 +1,5 @@
 import type { ColumnDef } from "@tanstack/react-table";
-import { Button } from "@/components/ui/button";
-import { EyeIcon, PencilIcon, TrashIcon } from "lucide-react";
-
+import Actions from "./actions";
 
 export interface IBookCol {
   title: string;
@@ -46,33 +44,6 @@ export const columns: ColumnDef<IBookCol>[] = [
   {
     header: "Actions",
     id: "actions",
-    cell: ({ row }) => (
-      <div className="flex gap-2">
-        <Button
-          size="icon"
-          variant="ghost"
-          className="hover:bg-primary cursor-pointer hover:text-white"
-          onClick={() => alert(JSON.stringify(row.original, null, 2))}
-        >
-          <EyeIcon className="w-4 h-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="hover:bg-primary cursor-pointer hover:text-white"
-          onClick={() => alert(JSON.stringify(row.original, null, 2))}
-        >
-          <PencilIcon className="w-4 h-4" />
-        </Button>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="hover:bg-primary cursor-pointer"
-          onClick={() => alert(JSON.stringify(row.original, null, 2))}
-        >
-          <TrashIcon className="w-4 h-4 text-red-500" />
-        </Button>
-      </div>
-    ),
+    cell: ({ row }) => <Actions row={row} />,
   },
 ];
