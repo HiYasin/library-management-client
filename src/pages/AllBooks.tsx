@@ -1,4 +1,4 @@
-import BookTable from "@/components/BookTable";
+import BookTable from "@/components/module/BookTable";
 
 export default function AllBooks() {
   return (

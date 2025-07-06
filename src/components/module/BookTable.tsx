@@ -1,7 +1,7 @@
 import { useGetAllBooksQuery } from "@/redux/features/books/bookApi";
-import { columns } from "./data-table/columns";
-import { DataTable } from "./data-table/data-table";
-import Spinner from "./ui/spinner";
+import { columns } from "../data-table/columns";
+import { DataTable } from "../data-table/data-table";
+import Spinner from "../ui/spinner";
 
 export default function BookTable() {
   const { data, isLoading, isError } = useGetAllBooksQuery(undefined);

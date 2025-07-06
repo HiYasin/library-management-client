@@ -1,69 +1,104 @@
-# React + TypeScript + Vite
+# README
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# LibWise
 
-Currently, two official plugins are available:
+An advanced and user-friendly library management client built with React and TypeScript, designed to streamline book management and borrowing workflows. It offers a clean, modern interface for handling essential library operations efficiently using the latest web technologies.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live Demo**: [https://library-management-client-faisal.vercel.app/](https://library-management-client-faisal.vercel.app/)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Book Management
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Add New Books**
+- **Edit Books**
+- **View Specific Book Details**
+- **View All Books**
+- **Delete Books**
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Borrow Management
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Borrow Available Book**
+- **Borrowing Summary**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Others
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Responsive UI**
+- **Comprehensive validation**
+- **Real-time Updates**
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Tech Stack
+
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Library:** [React](https://react.dev/)
+- **Programming Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Routing:** [React Router](https://reactrouter.com/)
+- **State Management:** [Redux Toolkit](https://redux-toolkit.js.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components:** [Shadcn UI](https://ui.shadcn.com/)
+- **Forms:** [React Hook Form](https://react-hook-form.com/)
+- **Schema Validation:** [Zod](https://zod.dev/)
+
+## Getting Started
+
+### Setup Instructions
+
+1. **Clone the repository**
+    
+    ```bash
+    git clone https://github.com/HiYasin/library-management-client
+    ```
+    
+2. **Go to project directory**  
+    
+    ```bash
+    cd library-management-client
+    ```
+    
+3. **Install dependencies**
+    
+    ```bash
+    npm install
+    ```
+    
+4. **Start the development server**
+    
+    ```bash
+    npm run dev
+    ```
+    
+
+## Scripts
+
+- `npm run dev` - Runs development mode. To view it in the browser open [http://localhost:5173](http://localhost:5173/)
+- `npm run build` - Builds the app for production to the `dist` folder.
+
+## Project Structure
+
+```bash
+root/
+│
+├── 📁 src/                         # Main source code
+│   ├── 📁 assets/                  # Static files (images, icons, etc.)
+│   ├── 📁 components/              # Reusable UI components
+│   │   ├── 📁 data-table/          # Table components (likely TanStack)
+│   │   ├── 📁 module/              # Domain-specific UI modules
+│   │   └── 📁 ui/                  # ShadCN or custom UI elements
+│   │
+│   ├── 📁 lib/                     # Utility functions or helpers
+│   ├── 📁 pages/                   # Page components (routed views)
+│   ├── 📁 providers/               # Context providers (Theme, Auth, etc.)
+│
+│   ├── 📁 redux/                   # Redux Toolkit store & slices
+│   │   ├── 📁 features/
+│   │   │   ├── 📁 books/           # Book-related redux logic
+│   │   │   └── 📁 borrow/          # Borrowing-related redux logic
+│   │   └── 📄 store.ts             # Redux store configuration
+│
+│   ├── 📁 routes/                 # Route definitions
+│   │   └── 📄 Routes.tsx          # Application route layout
+│
+│   ├── 📄 App.tsx                 # Root app component
+│   ├── 📄 main.tsx                # ReactDOM.render (entry point)
+│   ├── 📄 type.ts                 # Global type definitions
 ```

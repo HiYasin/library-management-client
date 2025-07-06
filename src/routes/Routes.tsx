@@ -1,5 +1,5 @@
 import App from "@/App";
-import ErrorPage from "@/components/ErrorPage";
+import ErrorPage from "@/components/module/ErrorPage";
 import { AddBook } from "@/pages/AddBook";
 import AllBooks from "@/pages/AllBooks";
 import BookDetails from "@/pages/BookDetails";

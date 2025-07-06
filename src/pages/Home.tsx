@@ -1,5 +1,5 @@
-import Discover from "@/components/Discover";
-import Hero from "@/components/Hero";
+import Discover from "@/components/module/Discover";
+import Hero from "@/components/module/Hero";
 
 export default function Home() {
   return (

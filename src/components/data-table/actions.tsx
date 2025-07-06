@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import type { IBookCol } from "./columns";
 import { useState } from "react";
-import Borrow from "../Borrow";
+import Borrow from "../module/Borrow";
 
 interface ActionsProps {
   row: IBookCol;

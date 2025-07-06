@@ -1,5 +1,5 @@
-import { Button } from "./ui/button";
-import Spinner from "./ui/spinner";
+import { Button } from "../ui/button";
+import Spinner from "../ui/spinner";
 import { useGetAllBooksQuery } from "@/redux/features/books/bookApi";
 import type { IBook } from "@/type";
 import BookCard from "./BookCard";
