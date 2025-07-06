@@ -8,3 +8,11 @@ export interface IBook {
     copies: number;
     available: boolean;
 }
+
+export interface ApiError {
+  data: {
+    success: boolean;
+    message: string;
+    data: [] | null;
+  };
+}

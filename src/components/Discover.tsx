@@ -8,11 +8,11 @@ import { Link } from "react-router";
 export default function Discover() {
   const { data, isLoading, isError } = useGetAllBooksQuery(undefined);
   // const books = data.data;
-  console.log({
-    data,
-    isLoading,
-    isError,
-  });
+  // console.log({
+  //   data,
+  //   isLoading,
+  //   isError,
+  // });
   if (isLoading) {
     return (
       <div className="container mx-auto h-[80vh] flex justify-center items-center">

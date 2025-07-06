@@ -5,5 +5,5 @@ export const baseApi = createApi({
     baseUrl: "http://localhost:3000/api",
   }),
   endpoints: () => ({}),
-  tagTypes: ["Books"],
+  tagTypes: ["Books", "BorrowBooks"],
 });

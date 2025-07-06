@@ -22,4 +22,4 @@ const booksApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetAllBooksQuery, useGetBookByIdQuery,useDeleteBookMutation } = booksApi;
+export const { useGetAllBooksQuery, useGetBookByIdQuery, useDeleteBookMutation } = booksApi;

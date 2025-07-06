@@ -1,19 +1,22 @@
 import { Button } from "@/components/ui/button";
 import { useDeleteBookMutation } from "@/redux/features/books/bookApi";
-import { EyeIcon, PencilIcon, TrashIcon } from "lucide-react";
+import { BookIcon, EyeIcon, PencilIcon, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import type { IBookCol } from "./columns";
-
+import { useState } from "react";
+import Borrow from "../Borrow";
 
 interface ActionsProps {
   row: IBookCol;
 }
 
-export default function Actions({ row }:ActionsProps) {
+export default function Actions({ row }: ActionsProps) {
+  const [openBorrow, setOpenBorrow] = useState(false);
+
   const [deleteBook] = useDeleteBookMutation();
 
-  console.log(row)
+  // console.log(row)
   const handleDelete = async (bookId: string) => {
     try {
       await deleteBook(bookId).unwrap();
@@ -26,9 +29,9 @@ export default function Actions({ row }:ActionsProps) {
 
   const navigate = useNavigate();
 
-  const handleDetails=(bookId: string)=>{
+  const handleDetails = (bookId: string) => {
     navigate(`/books/${bookId}`);
-  }
+  };
 
   return (
     <div className="flex gap-2">
@@ -40,6 +43,17 @@ export default function Actions({ row }:ActionsProps) {
       >
         <EyeIcon className="w-4 h-4" />
       </Button>
+      <div>
+        <Button
+          size="icon"
+          variant="ghost"
+          className="hover:bg-primary cursor-pointer hover:text-white"
+          onClick={() => setOpenBorrow(true)}
+        >
+          <BookIcon className="w-4 h-4" />
+        </Button>
+        <Borrow bookId={row._id} open={openBorrow} onClose={() => setOpenBorrow(false)} />
+      </div>
       <Button
         size="icon"
         variant="ghost"
