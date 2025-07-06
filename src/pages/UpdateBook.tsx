@@ -37,7 +37,7 @@ const bookFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
   author: z.string().min(1, "Author is required"),
   isbn: z.string().min(10, "ISBN must be at least 10 characters"),
-  copies: z.coerce.number().int().positive("Copies must be a positive number"),
+  copies: z.coerce.number().int().min(0, "Copies must be a positive number"),
   description: z.string().min(10, "Description must be at least 10 characters"),
   genre: z.enum([
     "FICTION",
@@ -79,10 +79,15 @@ export function UpdateBook() {
   const onSubmit: SubmitHandler<z.infer<typeof bookFormSchema>> = async (
     data
   ) => {
+    const payload = {
+        ...data,
+        available: data.copies > 0? true : false,
+      };
+  
     try {
       const res = await updateBook({
         id: id,
-        data,
+        data: payload,
       }).unwrap();
       console.log(res);
       if (res.success) {
