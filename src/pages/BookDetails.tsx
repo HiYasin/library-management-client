@@ -1,12 +1,15 @@
+import Borrow from "@/components/module/Borrow";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Spinner from "@/components/ui/spinner";
 import { useGetBookByIdQuery } from "@/redux/features/books/bookApi";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
 export default function BookDetails() {
   const { id } = useParams();
   const { data, isLoading, isError } = useGetBookByIdQuery(id);
+  const [ openBorrow, setOpenBorrow ] = useState(false);
 
   const navigate = useNavigate();
 
@@ -39,7 +42,8 @@ export default function BookDetails() {
           </CardTitle>
           <div className="space-x-1">
             <Button variant="outline" className="text-primary" onClick={()=> navigate(-1)}>Back</Button>
-            <Button>Borrow</Button>
+            <Button onClick={() => setOpenBorrow(true)}>Borrow</Button>
+            <Borrow bookId={book._id} open={openBorrow} onClose={() => setOpenBorrow(false)}/>
           </div>
         </CardHeader>
 
