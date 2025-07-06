@@ -1,4 +1,4 @@
-import type { ApiError } from "@/type";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,12 +21,17 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft } from "lucide-react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useCreateBookMutation } from "@/redux/features/books/bookApi";
+import {
+  useGetBookByIdQuery,
+  useUpdateBookMutation,
+} from "@/redux/features/books/bookApi";
 import { Label } from "@/components/ui/label";
+import Spinner from "@/components/ui/spinner";
+import { useEffect } from "react";
 
 const bookFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -45,33 +50,68 @@ const bookFormSchema = z.object({
   available: z.boolean(),
 });
 
-export function AddBook() {
+export function UpdateBook() {
   const navigate = useNavigate();
-  const [createBook, { isLoading }] = useCreateBookMutation();
+  const { id } = useParams();
+  const { data, isLoading, isError } = useGetBookByIdQuery(id);
+
+  console.log({
+    data,
+    isLoading,
+    isError,
+  });
+
+  const [updateBook] = useUpdateBookMutation();
+
   const form = useForm<z.infer<typeof bookFormSchema>>({
     resolver: zodResolver(bookFormSchema),
     defaultValues: {
-      available: true,
+        available: true,
     },
   });
+
+  useEffect(() => {
+    if (data?.data) {
+      form.reset(data.data);
+    }
+  }, [data, form]);
 
   const onSubmit: SubmitHandler<z.infer<typeof bookFormSchema>> = async (
     data
   ) => {
-    // console.log(data);
-    // form.reset();
-    toast.success("Book added successfully!");
     try {
-      const res = await createBook(data).unwrap();
+      const res = await updateBook({
+        id: id,
+        data,
+      }).unwrap();
+      console.log(res);
       if (res.success) {
-        toast.success("Book added successfully!");
-        form.reset();
+        toast.success("Book updated successfully!");
+        navigate("/all-books");
       }
-    } catch (error: unknown) {
-      toast.error((error as ApiError).data?.message || "Failed to add book.");
+    } catch (error) {
+      console.error("Error updating book:", error);
+      toast.error("Failed to update book. Please try again.");
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="container mx-auto h-[80vh] flex justify-center items-center">
+        <Spinner size={50} />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="container mx-auto py-10 flex justify-center items-center">
+        <span className="text-red-500 text-lg">
+          Failed to load book. Please try again later.
+        </span>
+      </div>
+    );
+  }
   return (
     <section className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 w-full mt-5">
       <h2 className="text-5xl font-bold mb-6 md:mb-10 text-center text-primary">

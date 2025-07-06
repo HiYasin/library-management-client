@@ -58,7 +58,7 @@ export default function Actions({ row }: ActionsProps) {
         size="icon"
         variant="ghost"
         className="hover:bg-primary cursor-pointer hover:text-white"
-        onClick={() => alert(JSON.stringify(row, null, 2))}
+        onClick={() => navigate(`/update-book/${row._id}`)}
       >
         <PencilIcon className="w-4 h-4" />
       </Button>
