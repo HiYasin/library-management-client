@@ -60,13 +60,12 @@ export function AddBook() {
   ) => {
     // console.log(data);
     // form.reset();
-    toast.success("Book added successfully!");
     try {
       const res = await createBook(data).unwrap();
       if (res.success) {
         toast.success("Book added successfully!");
         form.reset();
-        navigate("/all-books");
+        navigate("/books");
       }
     } catch (error: unknown) {
       toast.error((error as ApiError).data?.message || "Failed to add book.");

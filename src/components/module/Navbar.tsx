@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white dark:border-gray-800 dark:bg-gray-950">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4">
-        <Link to="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="Logo" className="h-20 w-20" />
           <p className="text-4xl">
             Lib<span className="text-primary">Wise</span>
@@ -28,7 +28,7 @@ export default function Navbar() {
             Home
           </NavLink>
           <NavLink
-            to="/all-books"
+            to="/books"
             className={({ isActive }) =>
               isActive
                 ? "text-primary"
@@ -38,7 +38,7 @@ export default function Navbar() {
             All Books
           </NavLink>
           <NavLink
-            to="/add-books"
+            to="/create-book"
             className={({ isActive }) =>
               isActive
                 ? "text-primary"
@@ -88,7 +88,7 @@ export default function Navbar() {
                   Home
                 </NavLink>
                 <NavLink
-                  to="/all-books"
+                  to="/books"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary text-sm font-medium"
@@ -98,7 +98,7 @@ export default function Navbar() {
                   All Books
                 </NavLink>
                 <NavLink
-                  to="/add-books"
+                  to="/create-book"
                   className={({ isActive }) =>
                     isActive
                       ? "text-primary text-sm font-medium"

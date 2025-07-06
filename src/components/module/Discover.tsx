@@ -42,7 +42,7 @@ export default function Discover() {
         ))}
       </div>
       <div className="w-full py-5 flex content-center">
-        <Link to={"/all-books"} className="mx-auto rounded-full">
+        <Link to={"/books"} className="mx-auto rounded-full">
           <Button>See All Books</Button>
         </Link>
       </div>

@@ -87,7 +87,7 @@ export function UpdateBook() {
       console.log(res);
       if (res.success) {
         toast.success("Book updated successfully!");
-        navigate("/all-books");
+        navigate("/books");
       }
     } catch (error) {
       console.error("Error updating book:", error);

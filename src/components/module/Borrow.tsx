@@ -24,6 +24,7 @@ import { PopoverContent } from "@radix-ui/react-popover";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router";
 
 interface BorrowBookModalProps {
   open: boolean;
@@ -37,6 +38,8 @@ export default function Borrow({
   onClose,
 }: BorrowBookModalProps) {
   const form = useForm();
+
+  const navigate = useNavigate();
 
   const [borrowBook, { isLoading }] = useBorrowBookMutation();
 
@@ -56,6 +59,7 @@ export default function Borrow({
         toast.success("Book borrowed successfully");
         form.reset();
         onClose();
+        navigate("/borrow-summary");
       }
     } catch (error: unknown) {
       console.error("Error submitting form:", error);
