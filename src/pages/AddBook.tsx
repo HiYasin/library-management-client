@@ -1,4 +1,5 @@
 import type { ApiError } from "@/type";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,6 +26,7 @@ import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useCreateBookMutation } from "@/redux/features/books/bookApi";
+import { Label } from "@/components/ui/label";
 
 const bookFormSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -40,6 +42,7 @@ const bookFormSchema = z.object({
     "BIOGRAPHY",
     "FANTASY",
   ]),
+  available: z.boolean(),
 });
 
 export function AddBook() {
@@ -47,10 +50,15 @@ export function AddBook() {
   const [createBook, { isLoading }] = useCreateBookMutation();
   const form = useForm<z.infer<typeof bookFormSchema>>({
     resolver: zodResolver(bookFormSchema),
+    defaultValues: {
+      available: true,
+    },
   });
 
-  const onSubmit: SubmitHandler<z.infer<typeof bookFormSchema>> = async ( data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<z.infer<typeof bookFormSchema>> = async (data) => {
+    // console.log(data);
+    // form.reset();
+    toast.success("Book added successfully!");
     try {
       const res = await createBook(data).unwrap();
       if (res.success) {
@@ -165,35 +173,57 @@ export function AddBook() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="genre"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  <FormLabel>Genre</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a genre" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="FICTION">Fiction</SelectItem>
-                      <SelectItem value="NON_FICTION">Non-Fiction</SelectItem>
-                      <SelectItem value="SCIENCE">Science</SelectItem>
-                      <SelectItem value="HISTORY">History</SelectItem>
-                      <SelectItem value="BIOGRAPHY">Biography</SelectItem>
-                      <SelectItem value="FANTASY">Fantasy</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="genre"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel>Genre</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a genre" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="FICTION">Fiction</SelectItem>
+                        <SelectItem value="NON_FICTION">Non-Fiction</SelectItem>
+                        <SelectItem value="SCIENCE">Science</SelectItem>
+                        <SelectItem value="HISTORY">History</SelectItem>
+                        <SelectItem value="BIOGRAPHY">Biography</SelectItem>
+                        <SelectItem value="FANTASY">Fantasy</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="available"
+                render={({ field }) => (
+                  <FormItem className="">
+                    <div className="space-y-1 leading-none">
+                      <FormLabel>Available to borrow</FormLabel>
+                      {/* <FormControl>
 
+                      </FormControl> */}
+                      <div className="flex flex-row items-start space-x-1 rounded-md border p-2">
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                        <Label>Book is available for borrowing</Label>
+                      </div>
+                    </div>
+                  </FormItem>
+                )}
+              />
+            </div>
             <Button type="submit" disabled={isLoading}>
               {isLoading ? "Submitting..." : "Submit"}
             </Button>
