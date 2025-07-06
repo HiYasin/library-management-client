@@ -66,6 +66,7 @@ export function AddBook() {
       if (res.success) {
         toast.success("Book added successfully!");
         form.reset();
+        navigate("/all-books");
       }
     } catch (error: unknown) {
       toast.error((error as ApiError).data?.message || "Failed to add book.");

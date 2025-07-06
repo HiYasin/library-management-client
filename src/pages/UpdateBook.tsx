@@ -115,7 +115,7 @@ export function UpdateBook() {
   return (
     <section className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 w-full mt-5">
       <h2 className="text-5xl font-bold mb-6 md:mb-10 text-center text-primary">
-        Add New Book
+        Update Book
       </h2>
       <div className="max-w-5xl mx-auto w-full my-2">
         <Button variant="outline" onClick={() => navigate(-1)}>
