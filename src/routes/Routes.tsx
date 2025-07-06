@@ -1,5 +1,6 @@
 import App from "@/App";
 import ErrorPage from "@/components/ErrorPage";
+import { AddBook } from "@/pages/AddBook";
 import AllBooks from "@/pages/AllBooks";
 import BookDetails from "@/pages/BookDetails";
 import BorrowSummary from "@/pages/BorrowSummary";
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/books/:id",
         element: <BookDetails />
+      },
+      {
+        path: "/add-books",
+        element: <AddBook />
       }
     ]
   },
