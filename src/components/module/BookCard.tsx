@@ -1,11 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { IBook } from "@/type";
+import Actions from "../data-table/actions";
 
 interface BookCardProps {
   book: IBook;
 }
 
-export default function BookCard({ book }: BookCardProps) {
+export default function BookCard({ book,key }: BookCardProps) {
+  console.log(book);
   return (
     <Card className="hover:shadow-lg transition-shadow">
       <CardHeader className="flex flex-row justify-between">
@@ -30,6 +32,7 @@ export default function BookCard({ book }: BookCardProps) {
         <p>
           <strong>Copies:</strong> {book.copies}
         </p>
+        <Actions row={book}/>
       </CardContent>
     </Card>
   );
